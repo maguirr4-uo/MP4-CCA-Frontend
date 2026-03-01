@@ -16,7 +16,14 @@ const ADD_EVENT_URL = `${API_BASE}/events`;
 
 // TODO: Implement this function to fetch event data from your backend. Return the parsed JSON (an array of event objects)
 // HINT: Use the `fetch()` API and handle errors appropriately.
-const fetchEvents = async () => {};
+const fetchEvents = async () => {
+  const response = await fetch(FETCH_EVENTS_URL)
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch events.');
+  }
+  return response.json();
+};
 
 
 function App({}) {
