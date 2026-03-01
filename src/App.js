@@ -35,7 +35,7 @@ function App({}) {
   // HINT: `queryKey` and a `queryFn`
   const { data: events = [], isLoading, error } = useQuery({
     queryKey: ['events'], 
-    queryFn: () => {
+    queryFn: async () => {
       fetchEvents();
     },
   });
@@ -55,7 +55,7 @@ function App({}) {
   // HINT: On success, invalidate the query (so 'events' can be refeteched and updated) and close the form pop-up.
   const mutation = useMutation({
     mutationFn: addEvent,
-    onSuccess: () => {
+    onSuccess: async () => {
       queryClient.invalidateQueries();
       setIsOpen(false);
     },
