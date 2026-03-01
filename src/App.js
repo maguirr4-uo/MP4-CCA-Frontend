@@ -33,20 +33,32 @@ function App({}) {
 
   // TODO: Use TanStack Query's `useQuery` hook to fetch events from your backend.
   // HINT: `queryKey` and a `queryFn`
-  const { data: events = [], isLoading, error } = useQuery({});
+  const { data: events = [], isLoading, error } = useQuery({queryKey: ['events'], queryFn: fetchEvents,});
 
   // TODO: Implement this function to send a POST request to your backend to add a new event.
   // HINT: Use the `fetch()` API and implement error handling.
-  const addEvent = async (newEvent) => {};
+  const addEvent = async (newEvent) => {
+    const response = await fetch(ADD_EVENTS_URL)
+
+    if (!response.ok) {
+      throw new Error('Failed to add event.');
+    }
+    return response.json();
+  };
 
   // TODO: Use `useMutation` from TanStack Query to call your `addEvent` function.
   // HINT: On success, invalidate the query (so 'events' can be refeteched and updated) and close the form pop-up.
-  const mutation = useMutation({});
+  const mutation = useMutation({
+    mutationFn: addEvent,
+    onSuccess: () => {
+      queryClient.invalidateQueries();
+      setIsOpen(false);
+    },
+  });
 
   // TODO: Call your mutation function to trigger the event addition.
   // HINT: Use `mutation.mutate()`.
-  const handleAddEvent = (newEvent) => {};
-
+  const handleAddEvent = (newEvent) => {mutation.mutate(newEvent)};
 
   return (
     <div className="App">
