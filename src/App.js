@@ -33,7 +33,12 @@ function App({}) {
 
   // TODO: Use TanStack Query's `useQuery` hook to fetch events from your backend.
   // HINT: `queryKey` and a `queryFn`
-  const { data: events = [], isLoading, error } = useQuery({queryKey: ['events'], queryFn: fetchEvents,});
+  const { data: events = [], isLoading, error } = useQuery({
+    queryKey: 'events', 
+    queryFn: () => {
+      fetchEvents();
+    },
+  });
 
   // TODO: Implement this function to send a POST request to your backend to add a new event.
   // HINT: Use the `fetch()` API and implement error handling.
