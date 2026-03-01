@@ -34,7 +34,7 @@ function App({}) {
   // TODO: Use TanStack Query's `useQuery` hook to fetch events from your backend.
   // HINT: `queryKey` and a `queryFn`
   const { data: events = [], isLoading, error } = useQuery({
-    queryKey: ['eventsKey'], 
+    queryKey: ['events'], 
     queryFn: async () => {
       fetchEvents();
     },
