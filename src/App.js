@@ -57,7 +57,7 @@ function App({}) {
     mutationFn: addEvent,
     onSuccess: async () => {
       queryClient.invalidateQueries();
-      setIsOpen(false);
+      setShowForm(false);
     },
   });
 
