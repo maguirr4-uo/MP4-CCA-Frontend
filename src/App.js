@@ -42,7 +42,7 @@ function App({}) {
   // HINT: Use the `fetch()` API and implement error handling.
   const addEvent = async (newEvent) => {
     const response = await fetch(ADD_EVENT_URL, {
-      method: POST,
+      method: "POST",
       body: newEvent
       })
 
