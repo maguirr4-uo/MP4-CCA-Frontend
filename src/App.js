@@ -35,9 +35,7 @@ function App({}) {
   // HINT: `queryKey` and a `queryFn`
   const { data: events = [], isLoading, error } = useQuery({
     queryKey: ['events'], 
-    queryFn: async () => {
-      fetchEvents();
-    },
+    queryFn: fetchEvents,
   });
 
   // TODO: Implement this function to send a POST request to your backend to add a new event.
