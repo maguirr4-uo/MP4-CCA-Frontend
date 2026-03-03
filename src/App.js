@@ -43,8 +43,11 @@ function App({}) {
   const addEvent = async (newEvent) => {
     const response = await fetch(ADD_EVENT_URL, {
       method: "POST",
-      body: newEvent
-      })
+      headers: {
+        'Content-Type': 'application/json' // Inform the server the data type
+      },
+      body: JSON.stringify(newEvent)
+    })
 
     if (!response.ok) {
       throw new Error('Failed to add event.');
